@@ -4,19 +4,29 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
+@Entity(name = "user_details")
 public class User {
+	@Id
+	@GeneratedValue
 	private Integer id;
-	@JsonProperty("user_name")
+	//@JsonProperty("user_name")
 	@Size(min=2, message = "name should have at least 2 characters")
 	private String name;
 	
-	@JsonProperty("user_birthdate")
+	//@JsonProperty("user_birthdate")
 	@Past(message = "Birthdate should be in the past....")
 	private LocalDate birthDate;
 
+	protected User() {
+		
+	}
+	
 	public User(Integer id, String name, LocalDate birthDate) {
 		super();
 		this.id = id;
